@@ -1,5 +1,5 @@
-import React, { PropsWithChildren } from "react";
-import { Outlet } from "react-router-dom";
+import { PropsWithChildren, Suspense } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 function HomeTemplate(props: PropsWithChildren) {
   return (
@@ -10,10 +10,12 @@ function HomeTemplate(props: PropsWithChildren) {
           backgroundColor: "green",
         }}
       >
-        Header
+        <Link to="/">Home</Link>
+        <Link to="/search">Search</Link>
       </header>
-
-      <Outlet />
+      <Suspense fallback={<p>"Loading...."</p>}>
+        <Outlet />
+      </Suspense>
       {/* props.children */}
 
       <footer
