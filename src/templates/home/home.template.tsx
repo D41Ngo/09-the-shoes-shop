@@ -1,32 +1,21 @@
 import { PropsWithChildren, Suspense } from "react";
 import { Link, Outlet } from "react-router-dom";
+import Header from "./header/header";
+import Footer from "./footer/footer";
 
 function HomeTemplate(props: PropsWithChildren) {
   return (
     <div>
-      <header
-        style={{
-          height: 50,
-          backgroundColor: "green",
-        }}
-      >
-        <Link to="/">Home</Link>
-        <Link to="/search">Search</Link>
-      </header>
+      <Header />
+
+      {/* -----Pages---- */}
       <Suspense fallback={<p>"Loading...."</p>}>
         <Outlet />
       </Suspense>
       {/* props.children */}
+      {/* -----Pages---- */}
 
-      <footer
-        style={{
-          height: 50,
-          backgroundColor: "black",
-          color: "white",
-        }}
-      >
-        footer
-      </footer>
+      <Footer />
     </div>
   );
 }
