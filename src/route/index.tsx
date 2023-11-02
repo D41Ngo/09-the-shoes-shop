@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "detail",
+        path: "detail/:idDetail", // -> /detail/1 , /detail/2 , /detail/3 , /detail/
         element: <Detail />,
       },
       {

@@ -1,19 +1,44 @@
 import * as S from "./style";
+import { useNavigate } from "react-router-dom";
 
-export function Card() {
+export type TCard = {
+  id: any;
+
+  src: string;
+  alt?: string;
+
+  name: string;
+  desc: string;
+
+  price: string | number;
+};
+
+// trừ, loại bỏ thuộc tính "id"
+// type Props = Omit<TCard, "id">;
+type Props = TCard;
+
+export function Card(props: Props) {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/detail/${props.id}`);
+  };
+
   return (
     <S.Wrapper>
       <div className="center">
-        <S.Image src="https://i.pravatar.cc?img=1" alt=".." />
+        <S.Image onClick={handleNavigate} src={props.src} alt={props.alt} />
       </div>
       <div className="content">
-        <S.Name>Adias</S.Name>
-        <S.Desc>Lorem ipsum dolor sit amet.</S.Desc>
+        <S.Name>{props.name}</S.Name>
+        <S.Desc>{props.desc}</S.Desc>
       </div>
 
       <div className="action">
-        <S.Button variant={"buy"}>Buy</S.Button>
-        <S.Button variant={"waring"}>$50</S.Button>
+        <S.Button onClick={handleNavigate} variant={"buy"}>
+          Buy
+        </S.Button>
+        <S.Button variant={"dollar"}>${props.price}</S.Button>
       </div>
     </S.Wrapper>
   );

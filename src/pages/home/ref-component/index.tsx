@@ -20,7 +20,8 @@ function RefComponent() {
   );
 }
 // khoông thể lấy ref thông qua props được.
-// forwardRef: component muốn nhan ref từ bên ngoài
+// forwardRef: component muốn nhan ref từ bên ngoài.
+// forwardRef thường sẽ kết hợp với useImperativeHandle.
 const Counter = forwardRef(function Counter(props: any, ref: any) {
   const [count, setCount] = useState(0);
 

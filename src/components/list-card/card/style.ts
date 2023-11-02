@@ -1,10 +1,15 @@
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 40rem;
+  width: 36rem;
   box-shadow: 0 0.4rem 0.4rem 0 #00000040;
-
   height: 40rem;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 0.4rem;
+  overflow: hidden;
 
   .center {
     display: flex;
@@ -16,6 +21,7 @@ export const Wrapper = styled.div`
   }
 
   .action {
+    margin-top: auto;
   }
 `;
 
@@ -34,14 +40,22 @@ export const Name = styled.p`
 
 export const Desc = styled.p`
   font-family: Inter;
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 300;
   color: #cbc9c9;
 `;
 
-// strategy pattern
 type TVariant = "buy" | "dollar" | "waring";
 
+// Record: muốn định nghĩa một object có key là string và giá trị của từng key đó là number =>
+// {a:10, b:20, c: 30, d: 40, e: 60}
+// type TObject = {a: number; b: number; c: number; d:number}
+
+/**
+ * Record<string, number | string | boolean>
+ */
+
+// strategy pattern
 const variant: Record<TVariant, string> = {
   buy: "#9DE167",
   dollar: "#DEDDDC",
@@ -51,14 +65,10 @@ const variant: Record<TVariant, string> = {
 export const Button = styled.button<{ variant: TVariant }>`
   background-color: ${(props) => {
     return variant[props.variant];
-
-    switch (props.variant) {
-      case "buy":
-        return "#9DE167";
-      case "dollar":
-        return "#DEDDDC";
-      default:
-        return "";
-    }
   }};
+
+  height: 6.4rem;
+  width: 50%;
+
+  border: none;
 `;

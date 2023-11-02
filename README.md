@@ -10,4 +10,5 @@ npm i prettier -D
 
 ## prettier: format code
 ## eslint: rule cua project
-## 
+## Layout giong nhau, khac content
+
