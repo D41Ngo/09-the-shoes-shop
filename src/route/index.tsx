@@ -53,6 +53,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        // Chú Ý: params chỉ sử dụng cho trường hợp muốn truyền đi một thông số.
         path: "detail/:idDetail", // -> /detail/1 , /detail/2 , /detail/3 , /detail/
         element: <Detail />,
       },
@@ -64,12 +65,6 @@ export const router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
-    ],
-  },
-  {
-    path: "auth",
-    element: <AuthTemplate />,
-    children: [
       {
         path: "login",
         element: <Login />,
@@ -80,6 +75,20 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  // {
+  //   path: "auth",
+  //   element: <AuthTemplate />,
+  //   children: [
+  //     {
+  //       path: "login",
+  //       element: <Login />,
+  //     },
+  //     {
+  //       path: "register",
+  //       element: <Register />,
+  //     },
+  //   ],
+  // },
   {
     path: "*", // Nếu người dùng gõ một path không trùng khớp với mọi setup trong router của mình thì nó sẽ render ra component này.
     element: <h1>Page not found</h1>,

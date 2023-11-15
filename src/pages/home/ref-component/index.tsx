@@ -5,8 +5,10 @@ import React, {
   forwardRef,
 } from "react";
 
+type TRef = { increase: () => void };
+
 function RefComponent() {
-  const ref = useRef<{ increase: () => void }>();
+  const ref = useRef<TRef>();
 
   const increase = () => {
     ref.current?.increase();

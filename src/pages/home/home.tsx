@@ -7,6 +7,7 @@ import { getAllProduct } from "src/services";
 import { IIFE } from "src/utils";
 import { TProductAPI, convert } from "./convert";
 import { TCard } from "src/components/list-card/card";
+import { useScrollToTop } from "src/hooks/use-scroll-to-top";
 
 function Home() {
   /**
@@ -23,6 +24,17 @@ function Home() {
     });
   }, []);
 
+  // useEffect(() => {
+  //   getAllProduct(
+  //     (resp: any) => {
+  //       setListProduct(convert(resp));
+  //     },
+  //     (err) => {
+  //       // xu ly error
+  //     },
+  //   );
+  // }, []);
+
   return (
     <div>
       <Slider />
@@ -35,7 +47,7 @@ function Home() {
           margin: "4rem",
         }}
       >
-        <ListCard data={listProduct} />
+        <ListCard products={listProduct} />
       </div>
     </div>
   );

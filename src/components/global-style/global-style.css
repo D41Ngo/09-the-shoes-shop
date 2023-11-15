@@ -1,3 +1,9 @@
+/* -- Setup Tailwind -- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* -------------- */
+
 @font-face {
   font-family: Inter;
   src: url("src/assets/fonts/Inter-ExtraBold.ttf");
@@ -60,4 +66,12 @@ a {
 
 p {
   margin: 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.red {
+  background-color: red;
 }

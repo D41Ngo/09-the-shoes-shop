@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ListCard } from "src/components/list-card";
 import { getProductById } from "src/services";
 import { IIFE } from "src/utils";
-import { IDetailAPI } from "./type";
-import { ListCard } from "src/components/list-card";
 import { convert } from "../home/convert";
-
+import { IDetailAPI } from "./type";
+// Lấy dữ liệu từ trên store
+import { useDispatch } from "react-redux";
+import { addToCart } from "src/redux/cartSlice";
 function Detail() {
+  const dispatch = useDispatch();
+
   const params = useParams<{ idDetail: string }>();
 
   const [detail, setDetail] = useState<IDetailAPI>();
@@ -25,17 +29,27 @@ function Detail() {
 
   return (
     <div>
-      <img
-        style={{
-          width: 500,
-          height: 500,
-        }}
-        src={detail?.image}
-      />
+      <div>
+        <img
+          style={{
+            width: 500,
+            height: 500,
+          }}
+          src={detail?.image}
+        />
+        <button
+          onClick={() => {
+            const action = addToCart(detail);
+            dispatch(action);
+          }}
+        >
+          Add to cart
+        </button>
+      </div>
       {/* Card */}
       {/* Relate Product */}
       {detail?.relatedProducts?.length && (
-        <ListCard data={convert(detail.relatedProducts)} />
+        <ListCard products={convert(detail.relatedProducts)} />
       )}
     </div>
   );

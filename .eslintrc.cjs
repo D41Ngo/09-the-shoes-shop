@@ -11,5 +11,6 @@ module.exports = {
   ignorePatterns: ["**/typescript/*.ts"],
   rules: {
     "react-refresh/only-export-components": "warn",
+    "@typescript-eslint/ban-ts-comment": "warn",
   },
 };

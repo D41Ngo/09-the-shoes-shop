@@ -3,7 +3,7 @@
   background-color: #000000;
   color: #fff;
 
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
 
@@ -42,7 +42,7 @@
   padding-left: 5rem;
   padding-right: 5rem;
 
-  display: flex;
+  /* display: flex; */
   gap: 1rem;
 
   height: 5rem;

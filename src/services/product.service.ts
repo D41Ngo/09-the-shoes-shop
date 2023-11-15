@@ -28,6 +28,18 @@ export const getAllProduct = async (): Promise<TProductAPI[]> => {
   }
 };
 
+// export const getAllProduct = (fn: any, fnErr: any) => {
+//   axiosWithoutAuth("/Product")
+//     .then((resp) => {
+//       fn(resp.data.content);
+//       // return resp.data.content;
+//     })
+//     .catch((err) => {
+//       fnErr(err);
+//       // console.log(err);
+//     });
+// };
+
 export const getProductById = async (id: string): Promise<IDetailAPI> => {
   try {
     // const resp = await axiosWithoutAuth(`Product/getbyid?id=${id}`);
