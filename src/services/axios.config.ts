@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACCESS_TOKEN } from "src/constants";
+import { ACCESS_TOKEN, TOKEN_CYBER } from "src/constants";
 import { getLocal } from "src/utils";
 
 const BASE_URL = "https://shop.cyberlearn.vn/api";
@@ -26,7 +26,14 @@ export const axiosAuth = axios.create({
 // interceptor: Đính kèm thêm vài thông tin cho request trước khi gửi đi
 axiosAuth.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = `Bearer ${getLocal(ACCESS_TOKEN)}`;
+    // config.headers.Authorization = `Bearer ${getLocal(ACCESS_TOKEN)}`;
+    // config.headers.TokenCybersoft = TOKEN_CYBER;
+
+    config.headers = {
+      ...config.headers,
+      Authorization: `Bearer ${getLocal(ACCESS_TOKEN)}`,
+      TokenCybersoft: TOKEN_CYBER,
+    };
 
     return config;
   },

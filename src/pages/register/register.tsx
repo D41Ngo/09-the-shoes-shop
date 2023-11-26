@@ -96,77 +96,87 @@ function Register() {
         name: values.name,
       };
 
-      signUp(payload).then(() => {
-        navigate("/login");
-      });
+      signUp(payload)
+        .then(() => {
+          navigate("/login");
+        })
+        .catch((err) => {
+          // Nếu có lỗi trả về thì hiển thị lên cho người dùng biết.
+          // Hiển thị popup lên
+          // alert();
+          setErrorSignup({
+            isError: true,
+            message: "Trùng mail",
+          });
+        });
     },
   });
-  // -- End Form --
-
-  // const obj1 = {
-  //   a: 10,
-  //   b: 20,
-  // };
-
-  // const obj2 = { ...obj1 };
 
   console.log(formik);
+  const [errorSignup, setErrorSignup] = useState({
+    isError: false,
+    message: "",
+  });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="px-16 py-16">
-      <Row gutter={[16, 16]}>
-        <Col lg={12} xs={24}>
-          <label htmlFor="email">Email</label>
-          <Input
-            id="email"
-            // name="email"
-            // value={formik.values.email}
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
+    <>
+      {errorSignup.isError && <p>{errorSignup.message}</p>}
 
-            {...formik.getFieldProps("email")}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <p className="text-red-600 text-xl">{formik.errors.email}</p>
-          )}
+      <form onSubmit={formik.handleSubmit} className="px-16 py-16">
+        <Row gutter={[16, 16]}>
+          <Col lg={12} xs={24}>
+            <label htmlFor="email">Email</label>
+            <Input
+              id="email"
+              // name="email"
+              // value={formik.values.email}
+              // onChange={formik.handleChange}
+              // onBlur={formik.handleBlur}
 
-          <label htmlFor="pw">Password</label>
-          <Input
-            id="pw"
-            // name="passWord"
-            // value={formik.values.passWord}
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
+              {...formik.getFieldProps("email")}
+            />
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-red-600 text-xl">{formik.errors.email}</p>
+            )}
 
-            {...formik.getFieldProps("passWord")}
-          />
+            <label htmlFor="pw">Password</label>
+            <Input
+              id="pw"
+              // name="passWord"
+              // value={formik.values.passWord}
+              // onChange={formik.handleChange}
+              // onBlur={formik.handleBlur}
 
-          {formik.touched.passWord && formik.errors.passWord && (
-            <p className="text-red-600 text-xl">{formik.errors.passWord}</p>
-          )}
+              {...formik.getFieldProps("passWord")}
+            />
 
-          <label htmlFor="cpw">Confirm Password</label>
-          <Input
-            id="cpw"
-            // -----
-            // name="confirmPassWord"
-            // value={formik.values.confirmPassWord}
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
+            {formik.touched.passWord && formik.errors.passWord && (
+              <p className="text-red-600 text-xl">{formik.errors.passWord}</p>
+            )}
 
-            {...formik.getFieldProps("confirmPassWord")}
+            <label htmlFor="cpw">Confirm Password</label>
+            <Input
+              id="cpw"
+              // -----
+              // name="confirmPassWord"
+              // value={formik.values.confirmPassWord}
+              // onChange={formik.handleChange}
+              // onBlur={formik.handleBlur}
 
-            // {...obj1}
+              {...formik.getFieldProps("confirmPassWord")}
 
-            // a={obj1.a}
-            // b={obj2.b}
-          />
-          {formik.touched.confirmPassWord && formik.errors.confirmPassWord && (
-            <p className="text-red-600 text-xl">
-              {formik.errors.confirmPassWord}
-            </p>
-          )}
-          {/* {
+              // {...obj1}
+
+              // a={obj1.a}
+              // b={obj2.b}
+            />
+            {formik.touched.confirmPassWord &&
+              formik.errors.confirmPassWord && (
+                <p className="text-red-600 text-xl">
+                  {formik.errors.confirmPassWord}
+                </p>
+              )}
+            {/* {
             id:'cpw',
             name:'confirmPassWord',
             value:formik.values.confirmPassWord,
@@ -179,33 +189,34 @@ function Register() {
 
             ...obj1
           } */}
-        </Col>
-        <Col lg={12} xs={24}>
-          <label htmlFor="name">Name</label>
-          <Input id="name" {...formik.getFieldProps("name")} />
-          {formik.touched.name && formik.errors.name && (
-            <p className="text-red-600 text-xl">{formik.errors.name}</p>
-          )}
-          <label htmlFor="phone">Phone</label>
-          <Input id="phone" {...formik.getFieldProps("phone")} />
-          {formik.touched.phone && formik.errors.phone && (
-            <p className="text-red-600 text-xl">{formik.errors.phone}</p>
-          )}
+          </Col>
+          <Col lg={12} xs={24}>
+            <label htmlFor="name">Name</label>
+            <Input id="name" {...formik.getFieldProps("name")} />
+            {formik.touched.name && formik.errors.name && (
+              <p className="text-red-600 text-xl">{formik.errors.name}</p>
+            )}
+            <label htmlFor="phone">Phone</label>
+            <Input id="phone" {...formik.getFieldProps("phone")} />
+            {formik.touched.phone && formik.errors.phone && (
+              <p className="text-red-600 text-xl">{formik.errors.phone}</p>
+            )}
 
-          <Radio.Group {...formik.getFieldProps("gender")}>
-            <Radio value={true}>Male</Radio>
-            <Radio value={false}>Female</Radio>
-          </Radio.Group>
-        </Col>
-      </Row>
+            <Radio.Group {...formik.getFieldProps("gender")}>
+              <Radio value={true}>Male</Radio>
+              <Radio value={false}>Female</Radio>
+            </Radio.Group>
+          </Col>
+        </Row>
 
-      <button
-        type="submit"
-        className="rounded-full bg-indigo-700 text-slate-50 px-[1.1rem]"
-      >
-        Register
-      </button>
-    </form>
+        <button
+          type="submit"
+          className="rounded-full bg-indigo-700 text-slate-50 px-[1.1rem]"
+        >
+          Register
+        </button>
+      </form>
+    </>
   );
 }
 
